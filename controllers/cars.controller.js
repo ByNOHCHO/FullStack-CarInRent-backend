@@ -3,11 +3,12 @@ const Cars = require("../models/Cars.model");
 
 module.exports.carsController = {
     addCar: async (req, res) => {
-        const { img, name, mark, description, capacity } = req.body;
+        const { img, name, mark, description, capacity, price } = req.body;
         try {
             const data = await Cars.create({
                 name: name,
                 mark: mark,
+                price: price,
                 img: img,
                 description: description,
                 capacity: capacity
@@ -19,11 +20,12 @@ module.exports.carsController = {
     },
 
     changeCar: async (req, res) => {
-        const { img, name, mark, description, capacity } = req.body;
+        const { img, name, mark, description, capacity, price } = req.body;
         try {
             const data = await Cars.findByIdAndUpdate(req.params.id, {
                 name,
                 img,
+                price,
                 mark,
                 description,
                 capacity
