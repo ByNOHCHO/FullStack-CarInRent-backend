@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const markSchema = mongoose.Schema({
-  mark: String
-})
+  mark: String,
+});
 
-const Mark = mongoose.model('Mark', markSchema)
+const Mark = mongoose.model("Mark", markSchema);
 
-module.exports = Mark
+module.exports = Mark;
