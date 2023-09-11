@@ -18,7 +18,7 @@ module.exports.usersController = {
     },
 
     registration: async (req, res) => {
-        const {email, login, password, car} = req.body;
+        const { email, login, password, car } = req.body;
         const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS)); // Хешируем пароль
 
         try {
@@ -45,7 +45,7 @@ module.exports.usersController = {
     },
 
     login: async (req, res) => {
-        
+
         const { login, password } = req.body;
         try {
             const candidate = await User.findOne({ login });
@@ -55,7 +55,7 @@ module.exports.usersController = {
             }
             const valid = await bcrypt.compare(password, candidate.password);// проверка на корректный пароль
 
-            if (!valid) { 
+            if (!valid) {
                 return res.status(401).json('Введен неверный пароль')
             }
             const payload = {
@@ -74,7 +74,7 @@ module.exports.usersController = {
             console.log(e)
             res.status(400).json({ message: "Authorization error" })
         }
-    
+
 
     },
 

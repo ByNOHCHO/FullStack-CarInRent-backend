@@ -8,7 +8,7 @@ module.exports.markController ={
             })
             res.json(addedMark)
         }catch (err) {
-            res.json(err)
+            res.json(err.message)
         }
     },
     getAllMarks: async(req, res) => {
