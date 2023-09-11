@@ -4,12 +4,21 @@ const jwt = require('jsonwebtoken')
 const { validationResult } = require('express-validator');
 
 module.exports.usersController = {
-    showAllUsers: async (req, res) => {
+    showOneUser: async (req, res) => {
+
+        try {
+            const data = await User.findOne({
+                login: req.body.login
+            })
+            res.json(data)
+        } catch (error) {
+            res.status(404).json(error)
+        }
 
     },
 
     registration: async (req, res) => {
-        const {email, login, password} = req.body;
+        const {email, login, password, car} = req.body;
         const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS)); // Хешируем пароль
 
         try {
@@ -25,6 +34,7 @@ module.exports.usersController = {
                 email: email,
                 login: login,
                 password: hash,
+                car: car
             })
             res.json('Пользователь успешно зарегистрирован')
         } catch (error) {
@@ -35,12 +45,54 @@ module.exports.usersController = {
     },
 
     login: async (req, res) => {
+        
+        const { login, password } = req.body;
+        try {
+            const candidate = await User.findOne({ login });
+
+            if (!candidate) {
+                return res.status(401).json({ message: `Пользователь ${login} не найден` })
+            }
+            const valid = await bcrypt.compare(password, candidate.password);// проверка на корректный пароль
+
+            if (!valid) { 
+                return res.status(401).json('Введен неверный пароль')
+            }
+            const payload = {
+                id: candidate._id,
+                login: candidate.login
+            };
+            const token = await jwt.sign(payload, process.env.SECRET_JWT_KEY, {
+                expiresIn: "24h"
+            });
+
+            res.json({
+                token
+            });
+
+        } catch (e) {
+            console.log(e)
+            res.status(400).json({ message: "Authorization error" })
+        }
+    
 
     },
 
-    changeUser: async (req, res) => {
+    // addCarInRent: async (req, res) => {
+    //     try {
+    //         const data = User.findByIdAndUpdate(req.params.id, {
+    //             $push: {
+    //                 carInRent: {
+    //                     car: req.params.car
+    //                 }
+    //             }
+    //         })
+    //         res.json(data)
+    //     } catch (error) {
+    //         res.status(402).json(error, 'Ошибка при аренде машины')
+    //     }
 
-    },
+    // },
 
     deleteUser: async (req, res) => {
 
