@@ -3,10 +3,10 @@ const { markController } = require("../controllers/marks.controller")
 
 const router = Router()
 
-router.get("/mark", markController.getAllMarks)
-router.get("/mark/:id", markController.getMarkById)
-router.post("/mark", markController.addMark)
-router.delete("/mark/:id", markController.deleteMarkById)
-router.patch("/mark/:id", markController.updateMarkById)
+router.get("/marks", markController.getAllMarks)
+router.get("/marks/:id", markController.getMarkById)
+router.post("/marks", markController.addMark)
+router.delete("/marks/:id", markController.deleteMarkById)
+router.patch("/marks/:id", markController.updateMarkById)
 
 module.exports = router
