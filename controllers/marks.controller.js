@@ -2,9 +2,11 @@ const Mark = require("../models/Mark.model");
 
 module.exports.markController = {
   addMark: async (req, res) => {
+    const { img, mark } = req.body;
     try {
       const addedMark = await Mark.create({
-        mark: req.body.mark,
+        img,
+        mark
       });
       res.json(addedMark);
     } catch (err) {

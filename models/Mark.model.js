@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const markSchema = mongoose.Schema({
+  img: String,
   mark: String,
 });
 
