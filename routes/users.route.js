@@ -5,9 +5,9 @@ const { checkAuth } = require('../models/middlewares/auth.middleware');
 const router = Router()
 
 router.get('/user/:id',  usersController.showOneUser)
+router.delete('/user/:id',  usersController.deleteUser)
 router.post('/registration', registerValidation, usersController.registration);
 router.post('/login', loginValidator, usersController.login);
-// router.patch('/cars/:id', checkAuth, usersController.addCarInRent);
 
 
 module.exports = router;

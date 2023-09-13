@@ -15,6 +15,16 @@ module.exports.usersController = {
 
     },
 
+    deleteUser: async (req, res) => {
+            try {
+                const data = await User.findByIdAndDelete(req.params.id)
+                res.json(data)
+            } catch (error) {
+                res.json(error.message)
+            }
+
+    },
+
     registration: async (req, res) => {
         const { email, login, password, car } = req.body;
         const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS)); // Хешируем пароль
@@ -36,7 +46,6 @@ module.exports.usersController = {
             })
             res.json('Пользователь успешно зарегистрирован')
         } catch (error) {
-            console.log(e)
             res.status(400).json({ error: "Registration error" })
         }
 
@@ -69,7 +78,6 @@ module.exports.usersController = {
             });
 
         } catch (e) {
-            console.log(e)
             res.status(400).json({ message: "Authorization error" })
         }
 
@@ -92,7 +100,5 @@ module.exports.usersController = {
 
     // },
 
-    deleteUser: async (req, res) => {
 
-    },
 }
