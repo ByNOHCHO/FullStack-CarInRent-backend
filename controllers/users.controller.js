@@ -7,9 +7,7 @@ module.exports.usersController = {
     showOneUser: async (req, res) => {
 
         try {
-            const data = await User.findOne({
-                login: req.body.login
-            })
+            const data = await User.findById(req.params.id)
             res.json(data)
         } catch (error) {
             res.status(404).json(error)
