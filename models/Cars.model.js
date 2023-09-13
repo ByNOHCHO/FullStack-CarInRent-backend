@@ -9,7 +9,8 @@ const carsSchema = mongoose.Schema({
     ref: "Mark",
   },
   description: String,
-  capacity: Number,
+  capacity: String,
+  isRent: Boolean
 });
 
 const Cars = mongoose.model("Cars", carsSchema);
