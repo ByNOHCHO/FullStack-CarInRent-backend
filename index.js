@@ -14,6 +14,8 @@ app.use(morgan("dev"))
 app.use(require("./routes/users.route"));
 app.use(require("./routes/marks.route"));
 app.use(require("./routes/cars.route"));
+app.use(require("./routes/reviews.route")); 
+
 app.use('/assets', express.static(__dirname + '/assets'))
 
 mongoose

@@ -2,14 +2,15 @@ const Reviews = require("../models/Reviews.model");
 
 module.exports.reviewsController = {
   addReviews: async (req, res) => {
+    const { user, cars, text, rating } = req.body;
     try {
-      const addedReviews = await Reviews.create({
-        text: req.body.text,
-        rating: req.body.rating,
-        user: req.body.user,
-        cars: req.body.cars,
+      const data = await Reviews.create({
+        user: user,
+        cars: cars,
+        text: text,
+        rating: rating,
       });
-      res.json(addedReviews);
+      res.json(data);
     } catch (err) {
       res.json(err);
     }
