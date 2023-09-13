@@ -4,7 +4,7 @@ const { registerValidation, loginValidator } = require('../models/middlewares/ch
 const { checkAuth } = require('../models/middlewares/auth.middleware');
 const router = Router()
 
-router.get('/user',  usersController.showOneUser)
+router.get('/user/:id',  usersController.showOneUser)
 router.post('/registration', registerValidation, usersController.registration);
 router.post('/login', loginValidator, usersController.login);
 // router.patch('/cars/:id', checkAuth, usersController.addCarInRent);
