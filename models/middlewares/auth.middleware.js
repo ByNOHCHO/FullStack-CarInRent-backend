@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports.checkAuth = async (req, res, next) => {
     const { authorization } = req.headers;
+    console.log(authorization);
     const jwt = require('jsonwebtoken');
 
     try {

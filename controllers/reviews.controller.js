@@ -10,14 +10,15 @@ module.exports.reviewsController = {
         text: text,
         rating: rating,
       });
-      res.json(data);
+      const review = await Reviews.find({_id: data._id})
+      res.json(review);
     } catch (err) {
       res.json(err);
     }
   },
   getReviews: async (req, res) => {
     try {
-      const data = await Reviews.find({}).populate("сars").populate("user");
+      const data = await Reviews.find({}).populate("user");
       res.json(data);
     } catch (error) {
       res.json(error.message);
