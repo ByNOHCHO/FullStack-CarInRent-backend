@@ -10,7 +10,10 @@ const carsSchema = mongoose.Schema({
   },
   description: String,
   capacity: String,
-  isRent: Boolean
+  isRent: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const Cars = mongoose.model("Cars", carsSchema);

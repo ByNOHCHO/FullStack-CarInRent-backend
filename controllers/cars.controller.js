@@ -58,7 +58,7 @@ module.exports.carsController = {
     getOneCars: async(req, res) => {
         try{
             const oneCars = await Cars.findById(req.params.id).populate('mark')
-            res.json(oneCars)
+            res.json(oneCars) 
         }catch (err) {
             res.json(err)
         }
