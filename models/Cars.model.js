@@ -13,7 +13,8 @@ const carsSchema = mongoose.Schema({
   isRent: {
     type: Boolean,
     default: false
-  }
+  },
+  video: String
 });
 
 const Cars = mongoose.model("Cars", carsSchema);
