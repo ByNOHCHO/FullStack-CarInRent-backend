@@ -8,6 +8,4 @@ router.get('/cars', carsController.getAllCars);
 router.get('/cars/:id', carsController.getOneCars);
 router.delete('/cars/:id', carsController.deleteCarsById);
 
-
-
 module.exports = router
