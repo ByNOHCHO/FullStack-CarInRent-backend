@@ -1,14 +1,12 @@
 const mongoose = require('mongoose')
 
-const userSchema = mongoose.Schema ({
+const userSchema = mongoose.Schema({
     login: String,
     password: String,
     email: String,
     carInRent: [{
-        car: {
-            type: mongoose.SchemaTypes.ObjectId,
-            ref: "Cars"
-        }
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "Cars"
     }]
 
 })

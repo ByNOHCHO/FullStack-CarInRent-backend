@@ -84,21 +84,4 @@ module.exports.usersController = {
 
     },
 
-    // addCarInRent: async (req, res) => {
-    //     try {
-    //         const data = User.findByIdAndUpdate(req.params.id, {
-    //             $push: {
-    //                 carInRent: {
-    //                     car: req.params.car
-    //                 }
-    //             }
-    //         })
-    //         res.json(data)
-    //     } catch (error) {
-    //         res.status(402).json(error, 'Ошибка при аренде машины')
-    //     }
-
-    // },
-
-
 }
