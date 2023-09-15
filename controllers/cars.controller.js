@@ -36,8 +36,6 @@ module.exports.carsController = {
     }
   },
 
-
-
   deleteCarsById: async (req, res) => {
     try {
       const deleteCars = await Cars.findByIdAndDelete(req.params.id);
