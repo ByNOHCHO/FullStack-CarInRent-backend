@@ -15,6 +15,40 @@ module.exports.usersController = {
 
     },
 
+    addIsRent: async (req, res) => {
+        try {
+          const addedIsRent = await User.findByIdAndUpdate(
+            req.params.userId,
+            {
+              $push: {
+                carInRent: {
+                  car: req.body.car,
+                },
+              },
+            },
+            { new: true }
+          );
+          return res.json(addedIsRent);
+        } catch (err) {
+          return res.json(err);
+        }
+      },
+
+      deleteIsRent: async (req, res) => {
+        try{
+            await User.findByIdAndUpdate(req.params.id, {
+                $pull: {
+                    carInRent: {
+                        _id: req.body._id
+                    }
+                }
+            })
+            res.json("deleted")
+        } catch (err) {
+            res.json(err)
+        }
+      },
+
     deleteUser: async (req, res) => {
             try {
                 const data = await User.findByIdAndDelete(req.params.id)
@@ -84,21 +118,6 @@ module.exports.usersController = {
 
     },
 
-    // addCarInRent: async (req, res) => {
-    //     try {
-    //         const data = User.findByIdAndUpdate(req.params.id, {
-    //             $push: {
-    //                 carInRent: {
-    //                     car: req.params.car
-    //                 }
-    //             }
-    //         })
-    //         res.json(data)
-    //     } catch (error) {
-    //         res.status(402).json(error, 'Ошибка при аренде машины')
-    //     }
-
-    // },
 
 
 }
